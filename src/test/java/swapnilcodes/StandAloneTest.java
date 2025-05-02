@@ -2,6 +2,7 @@ package swapnilcodes;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -65,8 +66,12 @@ public class StandAloneTest {
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".ng-animating")));
 
         // Click on Cart button
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@routerlink='/dashboard/cart']")));
-        driver.findElement(By.xpath("//button[@routerlink='/dashboard/cart']")).click();
+      //  wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@routerlink='/dashboard/cart']")));
+      //  driver.findElement(By.xpath("//button[@routerlink='/dashboard/cart']")).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[routerlink*='cart']")));
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+                driver.findElement(By.cssSelector("[routerlink*='cart']")));
 
         // Cart Page - Total Items capturing
         List<WebElement> cartProducts = driver.findElements(By.cssSelector(".cartSection h3"));
