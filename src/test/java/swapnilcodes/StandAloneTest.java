@@ -32,7 +32,7 @@ public class StandAloneTest {
 
         // Applying implicit wait at global level
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
+        LandingPages landingpages = new LandingPages(driver);
         // Login Scenario:
         driver.get("https://rahulshettyacademy.com/client");
         driver.findElement(By.id("userEmail")).sendKeys("swapatel@abc.com");
